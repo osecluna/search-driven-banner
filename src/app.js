@@ -1,17 +1,12 @@
 /* global algoliasearch instantsearch */
 
-const searchClient = algoliasearch(
-  process.env.APPLICATION_ID,
-  process.env.SEARCH_APIKEY
-);
+const searchClient = algoliasearch('myApplicationID', 'mySearchAPIKey');
 
 const search = instantsearch({
-  indexName: 'sfccamplienceproduct.dynamic-banners',
+  indexName: 'myIndexName',
   searchClient,
   routing: {
-    stateMapping: instantsearch.stateMappings.singleIndex(
-      'sfccamplienceproduct.dynamic-banners'
-    ),
+    stateMapping: instantsearch.stateMappings.singleIndex('myIndexName'),
   },
 });
 
@@ -21,7 +16,6 @@ const mediaHost = 'https://i8.amplience.net';
 search.addWidgets([
   instantsearch.widgets.configure({
     hitsPerPage: 1,
-    // facetFilters: ['category:Women/Clothing'],
   }),
   instantsearch.widgets.hits({
     container: '#hits',
